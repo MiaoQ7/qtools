@@ -1,0 +1,65 @@
+{
+  "name": "QTOOLS",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "go": "vue-cli-service electron:serve",
+    "buildapp": "vue-cli-service electron:build",
+    "postinstall": "electron-builder install-app-deps",
+    "postuninstall": "electron-builder install-app-deps"
+  },
+  "main": "background.js",
+  "dependencies": {
+    "core-js": "^3.9.0",
+    "svg-sprite-loader": "^5.2.1",
+    "vue-i18n": "^8.22.4",
+    "vue-router": "^3.5.1",
+    "vue": "^2.6.12",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@intlify/vue-i18n-loader": "^1.0.0",
+    "@vue/cli-plugin-babel": "~4.5.11",
+    "@vue/cli-plugin-eslint": "~4.5.11",
+    "@vue/cli-plugin-router": "~4.5.11",
+    "@vue/cli-plugin-vuex": "~4.5.11",
+    "@vue/cli-service": "~4.5.11",
+    "@vue/eslint-config-standard": "^6.0.0",
+    "axios": "^0.21.1",
+    "babel-eslint": "^10.1.0",
+    "electron": "^11.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-standard": "^5.0.0",
+    "eslint-plugin-vue": "^7.6.0",
+    "eslint": "^7.20.0",
+    "less-loader": "^5.0.0",
+    "less": "^4.1.1",
+    "vue-cli-plugin-axios": "~0.0.4",
+    "vue-cli-plugin-electron-builder": "^2.0.0-rc.6",
+    "vue-cli-plugin-i18n": "~1.0.1",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/recommended",
+      "@vue/standard"
+    ],
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}
