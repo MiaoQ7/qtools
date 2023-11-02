@@ -1,6 +1,7 @@
 // import Home from 'views/Home.vue'
 import About from 'views/About.vue'
 import Index from 'views/Index.vue'
+import Page from 'views/Page.vue'
 
 export default [
   {
@@ -10,6 +11,11 @@ export default [
     meta: {
       keepAlive: true // keepAlive will allow the page to load only once
     }
+  },
+  {
+    path: '/page',
+    name: 'Page',
+    component: Page
   },
   {
     path: '/about',

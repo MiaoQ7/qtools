@@ -96,6 +96,7 @@ export default {
     },
     selectApp (app) {
       console.log(app)
+      this.$router.push({ name: 'Page' })
     }
   }
 }

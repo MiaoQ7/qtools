@@ -9,7 +9,7 @@ module.exports = {
   pages: {
     app: {
       title: 'QTOOLS',
-      entry: 'src/renderer/index.js',
+      entry: ['features/test/index.js', 'src/renderer/index.js'],
       template: 'public/index.html',
       filename: 'index.html'
     }
@@ -38,6 +38,14 @@ module.exports = {
       .set('main', resolve('src/main'))
       .set('views', resolve('src/renderer/views'))
       .set('components', resolve('src/renderer/components'))
+      .set('features', resolve('src/features'))
+    // const featuresRule = config.module.rule('features')
+    // featuresRule.test(/\.vue$/).use('vue-loader')
+    //   .loader('vue-loader')
+    //   .options({
+    //     fix: true,
+    //     extensions: ['.js', '.vue']
+    //   })
     // svg config
     const svgRule = config.module.rule('svg')
     svgRule.uses.clear()
