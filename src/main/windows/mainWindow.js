@@ -60,7 +60,7 @@ class MainWindow {
     if (process.platform === 'darwin') {
       const template = [
         {
-          label: 'vue-cli-electron-template',
+          label: 'qtools',
           submenu: [
             {
               role: 'about'

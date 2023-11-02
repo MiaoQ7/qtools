@@ -19,7 +19,7 @@ function loadLocaleMessages () {
 }
 
 export default new VueI18n({
-  locale: 'zh',
+  locale: 'en',
   fallbackLocale: 'en',
   /* 可以在vue页面中使用 console.log(this.$i18n.messages) 看到读取到的翻译内容
   You can use console.log (this.$i18n.messages) in the vue page to see the translations read */

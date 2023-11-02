@@ -11,7 +11,7 @@
       {{ $t(buttonText) }}
     </div>
     <h4>↑ Check out the console ↑</h4>
-    <h1>vue-cli-electron-template</h1>
+    <!-- <h1>vue-cli-electron-template</h1> -->
     <h2>Author: PurePeace</h2>
     <h2
       style="cursor: pointer; color: #FFF;"

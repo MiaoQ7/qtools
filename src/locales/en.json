@@ -7,7 +7,7 @@
   "trayMenu": {
     "reset": "Show main window",
     "openDialog": "Open dialog",
-    "openLink": "Open link",
+    "openLink": "Open Miao7",
     "exit": "Quit",
     "dialog": {
       "title": "You see me!",
@@ -20,5 +20,6 @@
     "requesting": "requesting...",
     "requestSuccess": "succeeded!",
     "requestFail": "failed"
-  }
+  },
+  "App List": "App List"
 }

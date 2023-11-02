@@ -55,6 +55,14 @@ export default {
       if (this.originSize) this.win.maximize()
       else this.win.restore()
       this.originSize = !this.originSize
+    },
+    closeWin () {
+      remote.dialog.showMessageBox(this.win, {
+        title: this.$t('提示'),
+        message: this.$t('完全退出'),
+        detail: this.$t('完全退出'),
+        buttons: ['确定']
+      })
     }
   }
 }

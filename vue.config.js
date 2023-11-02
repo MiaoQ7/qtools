@@ -8,7 +8,7 @@ function resolve (dir) {
 module.exports = {
   pages: {
     app: {
-      title: 'vue-cli-electron-template',
+      title: 'QTOOLS',
       entry: 'src/renderer/index.js',
       template: 'public/index.html',
       filename: 'index.html'

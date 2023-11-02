@@ -1,33 +1,90 @@
 <template>
   <div class="index">
     <div class="nav-bar">
-      <div class="nav-bar-item" :class="selectType == '' ? 'selected' : ''" @click="changeSelectType('')"><svg-icon className="nav-bar-icon" icon-class="type-store" />全部</div>
-      <div class="nav-bar-item" :class="selectType == item.name ? 'selected' : ''" v-for='(item) in appTypes' @click="changeSelectType(item.name)" :key='item.name'><svg-icon className="nav-bar-icon" :icon-class="item.icon" />{{item.name}}</div>
+      <div class="nav-bar-item" :class="selectType == '' ? 'selected' : ''" @click="changeSelectType('')"><svg-icon className="nav-bar-icon" icon-class="type-store" />{{ $t('All Apps') }}</div>
+      <div class="nav-bar-divide"></div>
+      <div class="nav-bar-item" :class="selectType == item.name ? 'selected' : ''" v-for='(item) in appTypes' @click="changeSelectType(item.name)" :key='item.name'><svg-icon className="nav-bar-icon" :icon-class="item.icon" />{{ $t(item.name) }}</div>
     </div>
 
     <div class="nav-user">
       <svg-icon className="nav-user-icon" icon-class="type-back" />
-      <div class="nav-user-name">QTOOLS用户</div>
+      <div class="nav-user-name">{{ $t('QTOOLS USER') }}</div>
     </div>
 
     <div class="main-content">
-      <div>BannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBannerBanner</div>
-      <div>APP LIST {{ selectType }}</div>
+      <div class="main-banner">
+        <div></div>
+      </div>
+      <div class="main-title">{{ $t('App List') }}</div>
+      <div class="main-app">
+        <div class="main-app-item" @click="selectApp(item)" v-for="(item) in appList.filter(e => !selectType || selectType === e.type)" :key="item.name">
+          <div class="main-app-item-logo">
+            <img :src="item.icon || blankImg" />
+          </div>
+          <div class="main-app-item-right">
+            <div class="main-app-item-name">{{ item.name }}</div>
+            <div class="main-app-item-desc">{{ item.description }}</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 // const ipc = require('electron').ipcRenderer
+import blankImg from '@/assets/404.png'
+
 export default {
   data () {
     return {
       selectType: '',
       appTypes: [
-        { name: '系统', icon: 'type-book' },
-        { name: '图片', icon: 'type-video' },
-        { name: '网络', icon: 'type-bed' }
-      ]
+        { name: 'System', icon: 'type-book' },
+        { name: 'Picture', icon: 'type-video' },
+        { name: 'Network', icon: 'type-bed' }
+      ],
+      appList: [
+        {
+          icon: '',
+          name: '内网穿透1',
+          description: '基于ngrok实现的，一个简单的内网穿透客户端',
+          type: 'Network',
+          appId: 'cn.miao7.nettunnel',
+          repo: 'https://npmjs.org/xxx/xxx'
+        },
+        {
+          icon: '',
+          name: '内网穿透2',
+          description: '基于ngrok实现的，一个简单的内网穿透客户端',
+          type: 'Picture'
+        },
+        {
+          icon: '',
+          name: '内网穿透3',
+          description: '基于ngrok实现的，一个简单的内网穿透客户端',
+          type: 'System'
+        },
+        {
+          icon: '',
+          name: '内网穿透4',
+          description: '基于ngrok实现的，一个简单的内网穿透客户端',
+          type: 'Picture'
+        },
+        {
+          icon: '',
+          name: '内网穿透5',
+          description: '基于ngrok实现的，一个简单的内网穿透客户端',
+          type: 'Picture'
+        },
+        {
+          icon: '',
+          name: '内网穿透6',
+          description: '基于ngrok实现的，一个简单的内网穿透客户端',
+          type: 'System'
+        }
+      ],
+      blankImg
     }
   },
   methods: {
@@ -36,6 +93,9 @@ export default {
         return
       }
       this.selectType = type
+    },
+    selectApp (app) {
+      console.log(app)
     }
   }
 }
@@ -56,9 +116,13 @@ export default {
 .nav-bar-item {
   color: #000;
   font-size: 14px;
-  line-height: 50px;
+  line-height: 40px;
   border-radius: 5px;
   padding: 0 20px;
+}
+.nav-bar-divide {
+  border: 1px solid #ccc;
+  margin: 5px 10px;
 }
 .nav-bar-item:hover {
   cursor: pointer;
@@ -99,5 +163,54 @@ export default {
   overflow: hidden;
   word-wrap: break-word;
   /* background: red; */
+}
+.main-banner {
+  /* background: #000; */
+  height: 200px;
+  padding: 10px;
+  overflow: hidden;
+}
+.main-banner div {
+  width: 100%;
+  height: 200px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  background-image: url('~assets/banner.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.main-title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px;
+}
+.main-app {
+  display: flex;
+  flex-wrap: wrap;
+}
+.main-app-item {
+  width: 250px;
+  height: 90px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  margin: 10px 10px;
+  display: flex;
+}
+.main-app-item-logo, .main-app-item-right {
+  display: inline-block;
+}
+.main-app-item-logo img {
+  width: 80px;
+  height: 80px;
+  padding: 5px;
+}
+.main-app-item-right {
+  width: 150px;
+  padding: 5px;
+}
+.main-app-item-desc {
+  font-size: 12px;
+  padding: 5px 0;
 }
 </style>

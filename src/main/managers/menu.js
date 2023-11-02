@@ -31,21 +31,21 @@ class MenuManager {
         label: $t('trayMenu.openLink'),
         click: () => {
           const { shell } = require('electron')
-          shell.openExternal('https://www.electronjs.org/docs')
+          shell.openExternal('https://blog.miao7.cn')
         }
       },
-      {
-        key: '3',
-        label: $t('trayMenu.openDialog'),
-        click: () => {
-          dialog.showMessageBox({
-            type: 'info',
-            title: $t('trayMenu.dialog.title'),
-            message: $t('trayMenu.dialog.message'),
-            detail: $t('trayMenu.dialog.detail')
-          })
-        }
-      },
+      // {
+      //   key: '3',
+      //   label: $t('trayMenu.openDialog'),
+      //   click: () => {
+      //     dialog.showMessageBox({
+      //       type: 'info',
+      //       title: $t('trayMenu.dialog.title'),
+      //       message: $t('trayMenu.dialog.message'),
+      //       detail: $t('trayMenu.dialog.detail')
+      //     })
+      //   }
+      // },
       {
         key: '4',
         label: $t('trayMenu.exit'),
