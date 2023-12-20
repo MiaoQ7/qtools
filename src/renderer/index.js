@@ -20,6 +20,11 @@ import $backend from 'backend'
 // Less or Css ------
 /* Nothing now */
 
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI)
+
 // Add Prototype ------
 Vue.prototype.$backend = $backend
 Vue.prototype.SvgIconList = SvgIconList

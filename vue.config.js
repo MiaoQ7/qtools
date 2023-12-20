@@ -9,7 +9,7 @@ module.exports = {
   pages: {
     app: {
       title: 'QTOOLS',
-      entry: ['features/test/index.js', 'src/renderer/index.js'],
+      entry: ['src/renderer/index.js'],
       template: 'public/index.html',
       filename: 'index.html'
     }

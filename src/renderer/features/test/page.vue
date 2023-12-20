@@ -2,29 +2,30 @@
   <div>
     <div class="back" @click="goIndex"><svg-icon icon-class="app-back" /></div>
     <div class="page">
-      <component :is="currentComponent" :remote="remote"></component>
+      <div>
+        这是一个插件页面 TEST
+        <div @click="openDialog">{{ $t('Click Me!') }}</div>
+      </div>
     </div>
   </div>
 </template>
-
 <script>
 import { remote } from 'electron'
 export default {
+  name: 'test-plugin',
   data () {
     return {
-      currentComponent: null,
-      remote,
-      app: {}
+      remote
     }
   },
-  mounted () {
-    this.loadComponent()
-    this.app = this.$route.params
-  },
   methods: {
-    async loadComponent () {
-      // const component = await import('../../' + this.app.path)
-      this.currentComponent = component.default.page
+    openDialog () {
+      this.remote.dialog.showMessageBox(this.remote.getCurrentWindow(), {
+        title: this.$t('info'),
+        message: this.$t('Click Me!'),
+        detail: this.$t('Click Me!'),
+        buttons: ['确定']
+      })
     },
     goIndex () {
       this.$router.go(-1)
@@ -32,7 +33,6 @@ export default {
   }
 }
 </script>
-
 <style>
 .back {
   height: 30px;

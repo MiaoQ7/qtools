@@ -1,7 +1,9 @@
 // import Home from 'views/Home.vue'
 import About from 'views/About.vue'
 import Index from 'views/Index.vue'
-import Page from 'views/Page.vue'
+// import Page from 'views/Page.vue'
+import test from '../features/test'
+import nettunnel from '../features/nettunnel'
 
 export default [
   {
@@ -12,10 +14,20 @@ export default [
       keepAlive: true // keepAlive will allow the page to load only once
     }
   },
+  // {
+  //   path: '/page',
+  //   name: 'Page',
+  //   component: Page
+  // },
   {
-    path: '/page',
-    name: 'Page',
-    component: Page
+    path: 'features/test',
+    name: 'cn.miao7.test',
+    component: test.page
+  },
+  {
+    path: 'features/nettunnel',
+    name: 'cn.miao7.nettunnel',
+    component: nettunnel.page
   },
   {
     path: '/about',
