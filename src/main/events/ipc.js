@@ -21,8 +21,8 @@ let default_nettunnel_config = {
   "status": "0",
   "localIP": "127.0.0.1",
   "localPort": "8080",
-  "url_add": "http://www.miaomiao.press/add",
-  "url_heartbeat": "http://www.miaomiao.press/heartbeat"
+  "url_add": "http://www.miaomiao.press/add?token=4475411",
+  "url_heartbeat": "http://www.miaomiao.press/heartbeat?token=4475411&domain=${domain}&port=${port}"
 }
 
 function read_nettunnel_config() {
@@ -97,7 +97,7 @@ remotePort = ${config.port}
 setInterval(() => {
   let config = read_nettunnel_config()
   if (config.status == 2 && config.domain) {
-    axios.get((config.url_heartbeat || default_nettunnel_config.url_heartbeat) + `?domain=${config.domain}&port=${config.port}`).then(async res => {
+    axios.get((config.url_heartbeat || default_nettunnel_config.url_heartbeat).replace('${domain}',config.domain).replace('${port}', config.port)).then(async res => {
       if (res && res.data && res.data.domain && res.data.port) {
         config.domain = res.data.domain
         config.port = res.data.port
@@ -159,7 +159,7 @@ class IpcEvents {
             config.status = 0
           })
         } else {
-          await axios.get((config.url_heartbeat || default_nettunnel_config.url_heartbeat) + `?domain=${config.domain}&port=${config.port}`).then(async res => {
+          await axios.get((config.url_heartbeat || default_nettunnel_config.url_heartbeat).replace('${domain}',config.domain).replace('${port}', config.port)).then(async res => {
             if (res && res.data && res.data.domain && res.data.port) {
               config.domain = res.data.domain
               config.port = res.data.port
