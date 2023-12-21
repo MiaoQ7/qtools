@@ -48,7 +48,7 @@ class AppManager {
   创建托盘菜单 */
   setAppTrayMenu () {
     const menu = this.menuManager.AppTrayMenu()
-    this.tray.setToolTip('运行中！Still Working!')
+    this.tray.setToolTip('QTOOLS')
     this.tray.setContextMenu(menu)
   }
 }

@@ -39,6 +39,7 @@
 <script>
 import { remote } from 'electron'
 // import localeChanger from 'components/localeChanger'
+const ipc = require('electron').ipcRenderer
 
 export default {
   // components: {
@@ -49,6 +50,11 @@ export default {
       win: remote.getCurrentWindow(),
       originSize: true
     }
+  },
+  mounted () {
+    const lang = 'zh'
+    this.$i18n.locale = lang
+    ipc.send('appLanguageChange', lang)
   },
   methods: {
     autoMaximize () {

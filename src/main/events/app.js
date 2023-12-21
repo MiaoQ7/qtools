@@ -31,7 +31,7 @@ class AppEvents {
         return
       }
       // 设置app托盘菜单 / Set the app tray
-      appManager.tray.setToolTip('窗口被关闭了！\nWindow is closed!')
+      appManager.tray.setToolTip('QTOOLS')
       appManager.tray.displayBalloon({
         title: '嗨~',
         content: '我在这里哦，并没有退出',
