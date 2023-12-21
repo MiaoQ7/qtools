@@ -1,0 +1,12 @@
+
+serverAddr = "qq.miaomiao.press"
+serverPort = 7000
+auth.method = "token"
+auth.token = "0x85hB2P"
+
+[[proxies]]
+name = "pscafc.qq.miaomiao.press"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 8080
+remotePort = 59775

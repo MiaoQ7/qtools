@@ -68,8 +68,15 @@ module.exports = {
         mac: {
           icon: './public/app.png'
         },
-        productName: 'QTOOLS'
-      }
+        productName: 'QTOOLS',
+        extraResources: [
+          {
+            "from": "src/lib",
+            "to": "lib",
+            "filter": ["**/*.exe"]
+          }
+        ]
+      },
     },
     // i18n config
     i18n: {

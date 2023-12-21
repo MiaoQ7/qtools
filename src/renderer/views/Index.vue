@@ -47,22 +47,22 @@ export default {
       appList: [
         {
           icon: '',
-          name: '内网穿透1',
-          description: '基于ngrok实现的，一个简单的内网穿透客户端',
+          name: '内网穿透',
+          description: '基于frp实现的，一个简单的内网穿透客户端',
           type: 'Network',
           appId: 'cn.miao7.nettunnel',
           path: 'features/nettunnel',
           repo: 'https://npmjs.org/xxx/xxx'
-        },
-        {
-          icon: '',
-          name: '测试',
-          description: 'DEMO',
-          type: 'Network',
-          appId: 'cn.miao7.test',
-          path: 'features/test',
-          repo: 'https://npmjs.org/xxx/xxx'
         }
+        // {
+        //   icon: '',
+        //   name: '测试',
+        //   description: 'DEMO',
+        //   type: 'Network',
+        //   appId: 'cn.miao7.test',
+        //   path: 'features/test',
+        //   repo: 'https://npmjs.org/xxx/xxx'
+        // }
         // ,
         // {
         //   icon: '',

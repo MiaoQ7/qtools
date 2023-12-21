@@ -4,17 +4,22 @@
     <div class="page">
       <div>
         <h3>内网穿透工具</h3>
-        <el-form :label-position="right" label-width="80px" :model="localData">
+        <el-form label-position="right" label-width="80px" :model="localData">
           <el-form-item label="内网IP">
             <el-input v-model="localData.ip"></el-input>
           </el-form-item>
           <el-form-item label="内网端口">
             <el-input v-model="localData.port"></el-input>
           </el-form-item>
+          <el-form-item v-if="openConnect==2" label="地址">
+            <el-button type="text" @click="openBrowser('http://' + remoteConfig.domain)">http://{{remoteConfig.domain}}</el-button><br/>
+            <el-button type="text" @click="openBrowser('https://' + remoteConfig.domain)">https://{{remoteConfig.domain}}</el-button>
+          </el-form-item>
           <el-form-item>
             <el-button v-if="openConnect==0" type="primary" @click="onSubmit">开始连接</el-button>
-            <el-button v-if="openConnect==1" type="primary" @click="close">连接中</el-button>
+            <el-button v-if="openConnect==1" type="primary">连接中...</el-button>
             <el-button v-if="openConnect==2" type="primary" @click="close">断开连接</el-button>
+            <el-button v-if="openConnect==3" type="primary" @click="close">关闭中...</el-button>
             <!-- <el-button type="primary" @click="onSubmit">开始连接</el-button> -->
             <!-- <el-button>取消</el-button> -->
           </el-form-item>
@@ -25,6 +30,7 @@
 </template>
 <script>
 import { remote } from 'electron'
+const ipc = require('electron').ipcRenderer
 export default {
   name: 'nettunel-plugin',
   data () {
@@ -34,8 +40,21 @@ export default {
         ip: '127.0.0.1',
         port: '8080'
       },
-      openConnect: 0 // 0 未连接 1 连接中 2 连接成功
+      openConnect: 0, // 0 未连接 1 连接中 2 连接成功 3 关闭中
+      remoteConfig: {}
     }
+  },
+  mounted () {
+    ipc.on('getFrpConfig', (event, arg) => {
+      console.log(arg)
+      this.remoteConfig = arg
+      if (arg.status) {
+        this.openConnect = parseInt(arg.status)
+      } else {
+        this.openConnect = 0
+      }
+    })
+    ipc.send('getFrpConfig')
   },
   methods: {
     openDialog () {
@@ -54,10 +73,15 @@ export default {
       if (this.openConnect !== 0) {
         return
       }
-      this.openConnect = 2
+      this.openConnect = 1
+      ipc.send('connectFrp', { action: 'connect', localIP: this.localData.ip, localPort: this.localData.port })
     },
     close () {
-      this.openConnect = 0
+      this.openConnect = 3
+      ipc.send('connectFrp', { action: 'close' })
+    },
+    openBrowser (url) {
+      ipc.send('openBrowser', url)
     }
   }
 }
