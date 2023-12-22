@@ -50,6 +50,13 @@ class AppManager {
     const menu = this.menuManager.AppTrayMenu()
     this.tray.setToolTip('QTOOLS')
     this.tray.setContextMenu(menu)
+    this.tray.on('double-click', () => {
+      if (!this.windowManager.mainWindow.win) {
+        this.windowManager.mainWindow.createWindow()
+      }
+      this.windowManager.mainWindow.win.restore()
+      this.windowManager.mainWindow.win.moveTop()
+    })
   }
 }
 

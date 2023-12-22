@@ -5,8 +5,8 @@ auth.method = "token"
 auth.token = "0x85hB2P"
 
 [[proxies]]
-name = "ciqfhg.qq.miaomiao.press"
+name = "fqrvlo.qq.miaomiao.press"
 type = "tcp"
 localIP = "127.0.0.1"
 localPort = 8080
-remotePort = 54783
+remotePort = 57152
