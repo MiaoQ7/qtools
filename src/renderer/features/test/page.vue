@@ -12,7 +12,14 @@
 <script>
 import { remote } from 'electron'
 export default {
-  name: 'test-plugin',
+  name: 'cn.miao7.test',
+  path: 'features/test',
+  showName: '测试',
+  desc: '描述',
+  repo: 'http://github.com/xx/xx',
+  icon: '',
+  type: 'System', // System\Picture\Network
+  hide: true,
   data () {
     return {
       remote
@@ -33,7 +40,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .back {
   height: 30px;
   padding-left: 10px;

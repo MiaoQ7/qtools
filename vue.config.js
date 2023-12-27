@@ -39,6 +39,7 @@ module.exports = {
       .set('views', resolve('src/renderer/views'))
       .set('components', resolve('src/renderer/components'))
       .set('features', resolve('src/features'))
+      .set('@business', resolve('src/main/events/business'))
     // const featuresRule = config.module.rule('features')
     // featuresRule.test(/\.vue$/).use('vue-loader')
     //   .loader('vue-loader')

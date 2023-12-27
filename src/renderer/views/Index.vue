@@ -44,59 +44,21 @@ export default {
         { name: 'Picture', icon: 'type-video' },
         { name: 'Network', icon: 'type-bed' }
       ],
-      appList: [
-        {
-          icon: '',
-          name: '内网穿透',
-          description: '基于frp实现的，一个简单的内网穿透客户端',
-          type: 'Network',
-          appId: 'cn.miao7.nettunnel',
-          path: 'features/nettunnel',
-          repo: 'https://npmjs.org/xxx/xxx'
-        }
-        // {
-        //   icon: '',
-        //   name: '测试',
-        //   description: 'DEMO',
-        //   type: 'Network',
-        //   appId: 'cn.miao7.test',
-        //   path: 'features/test',
-        //   repo: 'https://npmjs.org/xxx/xxx'
-        // }
-        // ,
-        // {
-        //   icon: '',
-        //   name: '内网穿透2',
-        //   description: '基于ngrok实现的，一个简单的内网穿透客户端',
-        //   type: 'Picture'
-        // },
-        // {
-        //   icon: '',
-        //   name: '内网穿透3',
-        //   description: '基于ngrok实现的，一个简单的内网穿透客户端',
-        //   type: 'System'
-        // },
-        // {
-        //   icon: '',
-        //   name: '内网穿透4',
-        //   description: '基于ngrok实现的，一个简单的内网穿透客户端',
-        //   type: 'Picture'
-        // },
-        // {
-        //   icon: '',
-        //   name: '内网穿透5',
-        //   description: '基于ngrok实现的，一个简单的内网穿透客户端',
-        //   type: 'Picture'
-        // },
-        // {
-        //   icon: '',
-        //   name: '内网穿透6',
-        //   description: '基于ngrok实现的，一个简单的内网穿透客户端',
-        //   type: 'System'
-        // }
-      ],
+      appList: [],
       blankImg
     }
+  },
+  mounted () {
+    const allRoutes = this.$router.options.routes
+    this.appList = allRoutes.filter(e => e.meta && e.meta.show).map(e => ({
+      icon: e.meta.icon,
+      name: e.meta.showName,
+      description: e.meta.desc,
+      type: e.meta.type,
+      appId: e.name,
+      path: e.path,
+      repo: e.meta.repo
+    }))
   },
   methods: {
     changeSelectType (type) {

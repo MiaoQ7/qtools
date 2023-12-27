@@ -1,9 +1,28 @@
 // import Home from 'views/Home.vue'
 import About from 'views/About.vue'
 import Index from 'views/Index.vue'
-// import Page from 'views/Page.vue'
-import test from '../features/test'
-import nettunnel from '../features/nettunnel'
+
+const files = require.context(
+  '../features', // 目录路径
+  true, // 是否遍历子目录
+  /\.vue$/ // 匹配文件名的正则表达式
+)
+
+const routes = files.keys().map((key) => {
+  const component = files(key).default
+  return {
+    path: component.path,
+    name: component.name,
+    component: component,
+    meta: {
+      show: !component.hide,
+      desc: component.desc,
+      icon: component.icon,
+      type: component.type,
+      repo: component.repo
+    }
+  }
+})
 
 export default [
   {
@@ -19,23 +38,25 @@ export default [
   //   name: 'Page',
   //   component: Page
   // },
-  {
-    path: 'features/test',
-    name: 'cn.miao7.test',
-    component: test.page
-  },
-  {
-    path: 'features/nettunnel',
-    name: 'cn.miao7.nettunnel',
-    component: nettunnel.page
-  },
+  // {
+  //   path: 'features/test',
+  //   name: 'cn.miao7.test',
+  //   component: test.page
+  // },
+  // {
+  //   path: 'features/nettunnel',
+  //   name: 'cn.miao7.nettunnel',
+  //   component: nettunnel.page
+  // },
+  // {
+  //   path: 'features/netproxy',
+  //   name: 'cn.miao7.netproxy',
+  //   component: netproxy.page
+  // },
   {
     path: '/about',
     name: 'About',
     component: About
-    /* route level code-splitting
-    this generates a separate chunk (about.[hash].js) for this route
-    which is lazy-loaded when the route is visited. */
-    // component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  },
+  ...routes
 ]

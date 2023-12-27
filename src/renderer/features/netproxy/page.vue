@@ -3,7 +3,7 @@
     <div class="back" @click="goIndex"><svg-icon icon-class="app-back" /></div>
     <div class="page">
       <div>
-        <h3>内网穿透工具</h3>
+        <h3>网络代理工具</h3>
         <el-form label-position="right" label-width="80px" :model="localData">
           <el-form-item label="内网IP">
             <el-input v-model="localData.ip"></el-input>
@@ -32,10 +32,10 @@
 import { remote } from 'electron'
 const ipc = require('electron').ipcRenderer
 export default {
-  name: 'cn.miao7.nettunnel',
-  path: 'features/nettunnel',
-  showName: '内网穿透',
-  desc: '基于frp的内网穿透',
+  name: 'cn.miao7.netproxy',
+  path: 'features/netproxy',
+  showName: '网络代理',
+  desc: '基于http的内网穿透',
   repo: 'http://github.com/xx/xx',
   icon: '',
   type: 'Network', // System\Picture\Network
