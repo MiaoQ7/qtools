@@ -1,4 +1,4 @@
-import { app } from 'electron'
+import { app, dialog } from 'electron'
 const { spawn, exec } = require('child_process');
 import fs from 'fs'
 import path from 'path'

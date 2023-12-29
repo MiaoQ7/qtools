@@ -74,7 +74,7 @@ module.exports = {
           {
             "from": "src/lib",
             "to": "lib",
-            "filter": ["**/*.exe"]
+            "filter": ["**/*.exe","ss/**"]
           }
         ]
       },
