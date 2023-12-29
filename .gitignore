@@ -25,3 +25,5 @@ yarn-error.log*
 /dist_electron
 
 thumbs.db
+shadowsocks.log
+privoxy_*.conf
