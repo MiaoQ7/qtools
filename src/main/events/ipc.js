@@ -25,20 +25,21 @@ const { autoUpdater } = require('electron-updater');
 
 const feedUrl = 'https://download.miaomiao.press/'
 let mainWindow = null
-
+let versionInfo = ''
 // Object.defineProperty(app, 'isPackaged', {
 //   get() {
 //     return true;
 //   }
 // });
 
+fs.writeFileSync(path.join(root_path, 'update.log'), '')
+
 function sendUpdateMessage(text) {
-  // fs.appendFileSync(path.join(root_path, 'update.log'), JSON.stringify(text))
-  mainWindow.webContents.send('message', text)
+  fs.appendFileSync(path.join(root_path, 'update.log'), JSON.stringify(text))
+  mainWindow.win && mainWindow.win.webContents.send('message', text)
 }
 
 function updateHandle(window, feedUrl) {
-  console.log(window)
   mainWindow = window;
   //设置更新包的地址
   autoUpdater.setFeedURL(feedUrl);
@@ -80,19 +81,13 @@ function updateHandle(window, feedUrl) {
   });
   //下载完成监听，处理事件
   autoUpdater.on('update-downloaded', (ev, info) => {
-    setTimeout(function () {
-        win.focus(); // 弹窗置顶设置
-        dialog.showMessageBox(win,{
-            type: 'info',
-            title: '自动升级',
-            message: '检测到有新版本，是否立即升级？',
-            buttons: ['下次升级','立即升级']
-        },(index)=>{
-            if(index===1){
-                autoUpdater.quitAndInstall();
-            }
-        })
-    }, 1000)
+    // 收到renderer进程确认更新
+    ipcMain.on('updateNow', (e, arg) => {
+      console.log('开始更新')
+      autoUpdater.quitAndInstall() // 包下载完成后，重启当前的应用并且安装更新
+    })
+    // 主进程向renderer进程发送是否确认更新
+    mainWindow.win && mainWindow.win.webContents.send('isUpdateNow', versionInfo)
   })
 }
 
@@ -128,8 +123,11 @@ class IpcEvents {
 
     ipcMain.on('checkForUpdate', (sys, msg) => {
       console.log('=======checkForUpdate')
-      updateHandle(appManager.windowManager.mainWindow.win, feedUrl)
-      autoUpdater.checkForUpdates();
+      updateHandle(appManager.windowManager.mainWindow, feedUrl)
+      let checkInfo = autoUpdater.checkForUpdates()
+      checkInfo.then(function (data) {
+        versionInfo = data.versionInfo // 获取更新包版本等信息
+      })
     })
 
     files.keys().map((key) => {

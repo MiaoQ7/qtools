@@ -55,6 +55,26 @@ export default {
     const lang = 'zh'
     this.$i18n.locale = lang
     ipc.send('appLanguageChange', lang)
+    ipc.on('isUpdateNow', (event, versionInfo) => {
+      this.$confirm('检测到新版本' + versionInfo.version + ',是否立即升级？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        ipc.send('updateNow')
+      }).catch(() => {
+      })
+      // this.$confirm({
+      //   title: '提示',
+      //   content: '检测到新版本' + versionInfo.version + ',是否立即升级？',
+      //   ok: '确定',
+      //   cancel: '取消',
+      //   onOk () {
+      //     ipc.send('updateNow')
+      //   },
+      //   onCancel (tx) { }
+      // })
+    })
     ipc.send('checkForUpdate', {})
   },
   methods: {

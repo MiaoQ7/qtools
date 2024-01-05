@@ -83,6 +83,18 @@ module.exports = {
             url: "https://download.miaomiao.press/",//隐藏版本服务器地址
           }
         ],
+        nsis: {
+          oneClick: false,
+          allowToChangeInstallationDirectory: true,
+          allowElevation: true,
+          installerIcon: './public/app.ico',
+          uninstallerIcon: './public/app.ico',
+          installerHeaderIcon: './public/app.ico',
+          createDesktopShortcut: true,
+          createStartMenuShortcut: true,
+          shortcutName: "QTOOLS",
+          perMachine: false
+        }
       },
     },
     // i18n config
