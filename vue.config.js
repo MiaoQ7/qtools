@@ -76,7 +76,13 @@ module.exports = {
             "to": "lib",
             "filter": ["**/*.exe","ss/**"]
           }
-        ]
+        ],
+        publish: [
+          {
+            provider: "generic",
+            url: "https://download.miaomiao.press/",//隐藏版本服务器地址
+          }
+        ],
       },
     },
     // i18n config

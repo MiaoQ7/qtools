@@ -55,6 +55,7 @@ export default {
     const lang = 'zh'
     this.$i18n.locale = lang
     ipc.send('appLanguageChange', lang)
+    ipc.send('checkForUpdate', {})
   },
   methods: {
     autoMaximize () {
