@@ -89,8 +89,8 @@ export default {
     load () {
       this.currentRow = null
       axios.get('https://ngrok.miao7.cn/ss/list?token=4475411&pageSize=5').then(res => {
-        this.tableData = [res.data.data]
-        this.currentRow = res.data.data
+        this.tableData = res.data.data
+        this.currentRow = res.data.data.lenght > 0 ? res.data.data[0] : null
       })
     },
     goIndex () {
