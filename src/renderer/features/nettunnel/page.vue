@@ -55,6 +55,8 @@ export default {
     ipc.on('getFrpConfig', (event, arg) => {
       console.log(arg)
       this.remoteConfig = arg
+      this.localData.ip = arg.localIP
+      this.localData.port = arg.localPort
       if (arg.status) {
         this.openConnect = parseInt(arg.status)
       } else {
