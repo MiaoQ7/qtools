@@ -126,7 +126,9 @@ class IpcEvents {
       updateHandle(appManager.windowManager.mainWindow, feedUrl)
       let checkInfo = autoUpdater.checkForUpdates()
       checkInfo.then(function (data) {
-        versionInfo = data.versionInfo // 获取更新包版本等信息
+        if (data) {
+          versionInfo = data.versionInfo // 获取更新包版本等信息
+        }
       })
     })
 
