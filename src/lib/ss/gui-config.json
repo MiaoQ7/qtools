@@ -2,8 +2,8 @@
   "version": "4.4.1.0",
   "configs": [
     {
-      "server": "qq.miaomiao.press",
-      "server_port": 8860,
+      "server": "ss.miao7.cn",
+      "server_port": 8900,
       "password": "123456",
       "method": "none",
       "timeout": 5,

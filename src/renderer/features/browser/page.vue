@@ -20,7 +20,7 @@ export default {
   repo: 'http://github.com/xx/xx',
   icon: '',
   type: 'System', // System\Picture\Network
-  hide: false,
+  hide: true,
   data () {
     return {
       src: 'https://www.iyf.tv',
@@ -52,7 +52,8 @@ export default {
           win.setFullScreen(true)
         })
         this.webview.addEventListener('leave-html-full-screen', () => {
-          win.setFullScreen(false)
+          // win.setFullScreen(false)
+          win.restore()
         })
         // 连接发生变化时触发
         // this.webview.addEventListener('load-commit', () => {
